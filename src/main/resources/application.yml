@@ -1,9 +1,20 @@
+# Конфигурация для Eureka-сервера
 spring:
   application:
     name: eureka-server
 server:
-  port: 8761
+  port: 0
+
+# Конфигурация для Eureka-клиента
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    port: 0
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    enabled: true
+    appname: eureka-client
